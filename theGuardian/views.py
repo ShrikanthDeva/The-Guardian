@@ -17,3 +17,10 @@ def timeline(request):
 
 def analytics(request):
    return render(request, 'analytics.html')
+
+# added by ajay
+def about(request):
+   return render(request, 'about.html')
+
+def contact(request):
+   return render(request, 'contact.html')

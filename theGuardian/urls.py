@@ -7,4 +7,9 @@ urlpatterns = {
     path('home/', views.home),
     path('timeline/', views.timeline),
     path('analytics/', views.analytics)
+    
+    
+    #added by ajay kumar
+    ,path('about/', views.about),
+    path('contact/',views.contact)
 }
