@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Data Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        .data-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr); /* 2 columns with equal width */
+            grid-template-rows: repeat(3, 1fr); /* 3 rows with equal height */
+            gap: 20px; /* Adjust the gap between cards */
+            margin-top: 20px;
+        }
+        .data-card {
+            flex: 1;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Health Data Dashboard</h2>
+
+    <div class="data-container">
+        <div class="data-card" id="heartBeatCard">
+            <h3>Heart Beat</h3>
+            <p>Loading...</p>
+        </div>
+        <div class="data-card" id="spo2Card">
+            <h3>SPO2</h3>
+            <p>Loading...</p>
+        </div>
+        <div class="data-card" id="bloodPressureCard">
+            <h3>Blood Pressure</h3>
+            <p>Loading...</p>
+        </div>
+        <div class="data-card" id="temperatureCard">
+            <h3>Body Temperature</h3>
+            <p>Loading...</p>
+        </div>
+        <div class="data-card" id="respiratoryCard">
+            <h3>Respiratory</h3>
+            <p>Loading...</p>
+        </div>
+        <div class="data-card" id="sugarLevelCard">
+            <h3>Sugar Level</h3>
+            <p>Loading...</p>
+        </div>
+    </div>
+
+    <script>
+        var timeElapsed = 0;
+        var beatSum = 0;
+        var respSum = 0;
+        function fetchData() {
+            // Replace 'http://localhost:5000/data' with the actual API endpoint URL
+            var apiEndpoint = 'http://localhost:5000/data';
+
+            fetch(apiEndpoint)
+                .then(response => response.json())
+                .then(data => {
+                    timeElapsed += 1;
+                    beatSum += data['Heart Beat']
+                    respSum += data['Respiratory']
+                    if(timeElapsed == 60){
+                        updateDataCard('heartBeatCard', 'Heart Beat', beatSum/60);
+                        updateDataCard('respiratoryCard', 'Respiratory', respSum/60);
+                        timeElapsed = 0;
+                        beatSum = 0;
+                        respSum = 0;
+                    }
+                    
+                    updateDataCard('spo2Card', 'SPO2', data['SPO2']);
+                    updateDataCard('bloodPressureCard', 'Blood Pressure', `${data['Systolic']}/${data['Diastolic']}`);
+                    updateDataCard('temperatureCard', 'Body Temperature', data['Body Temp.']);
+                    
+                    updateDataCard('sugarLevelCard', 'Sugar Level', data['Sugar Level']);
+                })
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function updateDataCard(cardId, title, value) {
+            document.getElementById(cardId).querySelector('p').innerText = value;
+        }
+
+        // Fetch data initially
+        fetchData();
+
+        // Fetch data every 5 seconds (adjust as needed)
+        setInterval(fetchData, 1000);
+    </script>
+</body>
+</html>
+

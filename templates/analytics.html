@@ -13,7 +13,7 @@
             width: 100vh;
         }
         #id-card {
-            margin-top: 300px;
+            margin-top: 180px;
             padding: 10px;
             border: 1px solid #ccc;
         }
@@ -26,6 +26,8 @@
         <canvas id="graph2"></canvas>
         <canvas id="graph3"></canvas>
         <canvas id="graph4"></canvas>
+        <canvas id="graph5"></canvas>
+        <canvas id="graph6"></canvas>
     </div>
     <div id="id-card">
         <h3>Patient Detail</h3>
@@ -35,29 +37,47 @@
     </div>
 
     <script>
+        
+        var csvString = "";
+        var JSONcsv = {};
         var ctx1 = document.getElementById('graph1').getContext('2d');
         var ctx2 = document.getElementById('graph2').getContext('2d');
         var ctx3 = document.getElementById('graph3').getContext('2d');
         var ctx4 = document.getElementById('graph4').getContext('2d');
+        var ctx5 = document.getElementById('graph5').getContext('2d');
+        var ctx6 = document.getElementById('graph6').getContext('2d');
 
-        function generateHeartRateData() {
-            const data = [];
-            for (let i = 0; i < 100; i++) {
-                // Simulate a heart rate pattern using a sinusoidal waveform
-                const value = Math.sin((i / 100) * Math.PI * 2) * 40 + 70; // Adjust the amplitude and baseline as needed
-                data.push(value);
+        function fetchData() {
+            const apiUrl = 'http://localhost:5000/data';
+
+            fetch(apiUrl)
+                .then(response => response.json())
+                .then(data => {
+                // Handle the fetched data
+                JSONcsv = data;
+                console.log('Fetched data:', data);
+                })
+                .catch(error => {
+                console.error('Error fetching data:', error);
+                });
             }
-            return data;
-        }
-        const datapoints = [80, 78, 120, 60, 80, 80, 129, 60, 78, 80, 80, 124, 60, 81, 80, 80, 84, 121, 60, 80, 80];
 
+        document.addEventListener('DOMContentLoaded', function() {
+
+            fetchData();
+
+            setInterval(fetchData, 1000);
+        });
+
+        
+        const datapoints = [1];
         var graph1 = new Chart(ctx1, {
             type: 'line',
             data: {
-                labels: Array.from({ length: 20 }, (_, i) => i + 1),
+                labels: [1],
                 datasets: [{
-                    label: 'Heart Rate',
-                    data: datapoints,
+                    label: 'Heart Beat',
+                    data: [1],
                     borderColor: 'rgba(75, 192, 192, 1)',
                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                     tension: 0.4
@@ -66,8 +86,8 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        suggestedMax: 180,
+                        suggestedMin: -5,
+                        suggestedMax: 5,
                     }
                 }
             }
@@ -76,10 +96,10 @@
         var graph2 = new Chart(ctx2, {
             type: 'line',
             data: {
-                labels: Array.from({ length: 20 }, (_, i) => i + 1),
+                labels: [1],
                 datasets: [{
-                    label: 'Pulse Oximeter',
-                    data: [80, 80, 120, 60, 80, 80, 124, 60, 80, 80, 80, 122, 60, 80, 80, 80, 80, 121, 67, 81, 81],
+                    label: 'SPO2',
+                    data: [95],
                     borderColor: 'rgba(153, 102, 255, 1)',
                     backgroundColor: 'rgba(153, 102, 255, 0.2)',
                     tension: 0.1
@@ -88,8 +108,8 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        suggestedMax: 180,
+                        suggestedMin: 60,
+                        suggestedMax: 140,
                     }
                 }
             }
@@ -98,19 +118,27 @@
         var graph3 = new Chart(ctx3, {
             type: 'line',
             data: {
-                labels: Array.from({ length: 20 }, (_, i) => i + 1),
+                labels: [1],
                 datasets: [{
-                    label: 'ECG',
-                    data: [110, 100, 90, 80, 85, 110, 110, 100, 90, 80, 85, 110, 110, 100, 90, 80, 85, 110, 110, 100, 90, 80, 85, 110],
+                    label: 'Systolic',
+                    data: [112],
+                    borderColor: 'rgba(255, 255, 64, 1)',
+                    backgroundColor: 'rgba(255, 159, 64, 0.2)',
+                    tension: 0.4
+                },
+                {
+                    label: 'Diastolic',
+                    data: [80],
                     borderColor: 'rgba(255, 159, 64, 1)',
                     backgroundColor: 'rgba(255, 159, 64, 0.2)',
                     tension: 0.4
-                }]
-            },
+                },
+                ]
+            }, 
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true,
+                        suggestedMin: 40,
                         suggestedMax: 180,
                     }
                 }
@@ -120,10 +148,10 @@
         var graph4 = new Chart(ctx4, {
             type: 'line',
             data: {
-                labels: Array.from({ length: 20 }, (_, i) => i + 1),
+                labels: [0],
                 datasets: [{
-                    label: 'SPO2',
-                    data: [50, 100, 70, 70, 50, 50, 50, 100, 70, 70, 50, 50, 50, 100, 70, 70, 50, 50, 50, 100, 70, 70, 50, 50],
+                    label: 'Body Temp.',
+                    data: [100],
                     borderColor: 'rgba(255, 99, 132, 1)',
                     backgroundColor: 'rgba(255, 99, 132, 0.2)',
                     tension: 0.4
@@ -132,12 +160,98 @@
             options: {
                 scales: {
                     y: {
-                        beginAtZero: true,
-                        suggestedMax: 180,
+                        suggestedMin: 60,
+                        suggestedMax: 140,
                     }
                 }
             }
         });
+
+        var graph5 = new Chart(ctx5, {
+            type: 'line',
+            data: {
+                labels: [0],
+                datasets: [{
+                    label: 'Respiratory',
+                    data: [100],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        suggestedMin: 60,
+                        suggestedMax: 140,
+                    }
+                }
+            }
+        });
+
+        var graph6 = new Chart(ctx6, {
+            type: 'line',
+            data: {
+                labels: [0],
+                datasets: [{
+                    label: 'Sugar Level',
+                    data: [100],
+                    borderColor: 'rgba(255, 99, 132, 1)',
+                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        suggestedMin: 60,
+                        suggestedMax: 140,
+                    }
+                }
+            }
+        });
+
+        function addData(chart, label, newData) {
+            chart.data.labels.push(label);
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.push(newData);
+            });
+            chart.update();
+        }
+
+        function addDataBP(chart, label, newData1, newData2) {
+            chart.data.labels.push(label);
+            chart.data.datasets[0].data.push(newData1);
+            chart.data.datasets[1].data.push(newData2);
+            chart.update();
+        }
+
+        function removeData(chart) {
+            chart.data.labels.shift();
+            chart.data.datasets.forEach((dataset) => {
+                dataset.data.shift();
+            });
+            chart.update();
+        }
+        var i = 0;
+        setInterval(()=>{
+
+            addData(graph1, JSONcsv["Time"], JSONcsv["Heart Beat"]);
+            addData(graph2, JSONcsv["Time"], JSONcsv["SPO2"]);
+            addDataBP(graph3, JSONcsv["Time"], JSONcsv["Systolic"], JSONcsv["Diastolic"]);
+            addData(graph4, JSONcsv["Time"], JSONcsv["Body Temp."]);
+            addData(graph4, JSONcsv["Time"], JSONcsv["Respiratory"]);
+            addData(graph4, JSONcsv["Time"], JSONcsv["Sugar Level"]);
+            i+=1;
+            if(i>30){
+                removeData(graph1, JSONcsv["Time"], JSONcsv["Heart Beat"]);
+                removeData(graph2, JSONcsv["Time"], JSONcsv["SPO2"]);
+                removeData(graph3, JSONcsv["Time"], JSONcsv["Systolic"]);
+                removeData(graph4, JSONcsv["Time"], JSONcsv["Body Temp."]);
+                removeData(graph3, JSONcsv["Time"]);
+                removeData(graph4, JSONcsv["Time"]);
+            }
+        }, 1000);
     </script>
 </body>
 </html>
