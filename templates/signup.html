@@ -1,4 +1,5 @@
 {% load static %}
+{% load widget_tweaks %}
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="{% static 'js/color-modes.js' %}"></script>
@@ -202,43 +203,75 @@
         
         
         <main class="form-signin w-100 m-auto">
-        <form>
-        <h1 class="h3 mb-3 fw-normal">Doctor - Signup</h1>
-        
-        <div class="form input-items">
-            <label>Name : </label>
-        <input type="text" class="form-control" id="name" placeholder=" ">
-        </div>
 
-        <div class="form input-items">
-            <label>Email address : </label>
-        <input type="email" class="form-control" id="email" placeholder=" ">
-        </div>
+        <form method="POST" class="my-5">
+            {% if error %}
+            <div class="my-2">
+                <div class="row">
+                    <div class="m-auto col">
+                        <div class="text-center alert alert-danger" role="alert">
+                            {{error}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
 
-        <div class="form input-items">
-            <label>Password : </label>
-        <input type="password" class="form-control" id="floatingPassword" placeholder=" ">
-        
-        </div>
-        
-        
-        <div class="form input-items">
-            <label>Confirm Password : </label>
-        <input type="password" class="form-control" id="floatingPassword2" placeholder=" ">
-        
-        </div>
+            {% csrf_token %}
 
-        <div class="form-check text-start my-3">
-            <label class="form-check-label" for="registerLink">Registered user ?</label>
-            <a href="/" id="registerLink">Login</a>
-        </div>
+            <h1 class="h3 mb-3 fw-normal">Doctor - Signup</h1>
+            
+            <div class="form input-items">
+                <label class="form-label">Doctor Name</label>
+                {% render_field form.username|attr:'required:true' class="form-control" %}
+                
+            </div>
 
-        <div class="btn btn-primary w-100 py-2" type="submit">
-            <a href="/home" id="registerLink">Sign up</a>
-        </div>
-        
-        <!-- <div type="submit" onclick="window.location.href = 'http://127.0.0.1:8000/home'" >Sign up</div> -->
-        </form>
+            <div class="form input-items">
+                <label class="form-label">Email address</label>
+                {% render_field form.email|attr:'required:true' class="form-control" %}
+                
+            </div>
+
+            <div class="form input-items">
+                <label class="form-label">Password</label>
+                {% render_field form.password1|attr:'required:true' class="form-control" %}
+                
+            
+            </div>
+            
+            
+            <div class="form input-items">
+                <label class="form-label">Confirm Password</label>
+                {% render_field form.password2|attr:'required:true' class="form-control" %}
+                
+            
+            </div>
+
+            <div class="form input-items">
+                <label class="form-label">Phone</label>
+                {% render_field form.phone|attr:'required:true' class="form-control" %}
+                
+            </div>
+
+            <div class="form input-items">
+                <label class="form-label">Specialization</label>
+                {% render_field form.specialization|attr:'required:true' class="form-control" %}
+                
+            </div>
+
+            <div class="form-check text-start my-3">
+                <label class="form-check-label" for="registerLink">Registered user ?</label>
+                <a href="/" id="registerLink">Login</a>
+            </div>
+
+            {% comment %} <div class="btn btn-primary w-100 py-2" type="submit">
+                <a href="/home" id="registerLink">Sign up</a>
+            </div> {% endcomment %}
+            
+            <!-- <div type="submit" onclick="window.location.href = 'http://127.0.0.1:8000/home'" >Sign up</div> -->
+            <button type="submit" class="btn btn-primary w-100 py-2">Sign up</button>
+            </form>
         </main>
     </div>
 
