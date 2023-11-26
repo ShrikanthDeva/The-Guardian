@@ -27,3 +27,6 @@ def contact(request):
 
 def patientAdmit(request):
    return render(request, 'patientAdmit.html')
+
+def patientReAdmit(request):
+   return render(request, 'patientReAdmit.html')
