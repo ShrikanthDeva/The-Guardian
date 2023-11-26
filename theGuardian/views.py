@@ -24,3 +24,6 @@ def about(request):
 
 def contact(request):
    return render(request, 'contact.html')
+
+def patientAdmit(request):
+   return render(request, 'patientAdmit.html')

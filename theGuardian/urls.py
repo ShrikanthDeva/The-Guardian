@@ -11,5 +11,6 @@ urlpatterns = {
     
     #added by ajay kumar
     ,path('about/', views.about),
-    path('contact/',views.contact)
+    path('contact/',views.contact),
+    path('patientAdmit/',views.patientAdmit)
 }
