@@ -39,7 +39,7 @@ def signup(request):
    form = DoctorForm()
    if request.method == 'POST':
       form = DoctorForm(request.POST)
-      print(form)
+      print(form['username'],form['email'],form['password1'],form['password2'],form['phone'],form['specialization'])
       if form.is_valid():
 
          print(form.cleaned_data['username'],form.cleaned_data['email'],form.cleaned_data['password1'],form.cleaned_data['password2'],form.cleaned_data['phone'],form.cleaned_data['specialization'])
@@ -69,3 +69,6 @@ def timeline(request):
 
 def analytics(request):
    return render(request, 'analytics.html')
+
+def live(request):
+   return render(request, 'graphs2.html')

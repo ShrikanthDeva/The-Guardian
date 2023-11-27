@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Health Data Dashboard</title>
@@ -35,6 +36,7 @@
         <div class="data-card" id="heartBeatCard">
             <h3>Heart Beat</h3>
             <p>Loading...</p>
+            <i class="fa fa-solid fa-heart" style="color: #ff0000;"></i>
         </div>
         <div class="data-card" id="spo2Card">
             <h3>SPO2</h3>
@@ -51,6 +53,7 @@
         <div class="data-card" id="respiratoryCard">
             <h3>Respiratory</h3>
             <p>Loading...</p>
+            <i class="fa fa-solid fa-lungs"></i>
         </div>
         <div class="data-card" id="sugarLevelCard">
             <h3>Sugar Level</h3>
@@ -69,17 +72,9 @@
             fetch(apiEndpoint)
                 .then(response => response.json())
                 .then(data => {
-                    timeElapsed += 1;
-                    beatSum += data['Heart Beat']
-                    respSum += data['Respiratory']
-                    if(timeElapsed == 60){
-                        updateDataCard('heartBeatCard', 'Heart Beat', beatSum/60);
-                        updateDataCard('respiratoryCard', 'Respiratory', respSum/60);
-                        timeElapsed = 0;
-                        beatSum = 0;
-                        respSum = 0;
-                    }
                     
+                    updateDataCard('heartBeatCard', 'Heart Beat', data["hbpm"]);
+                    updateDataCard('respiratoryCard', 'Respiratory', data["rbpm"]);
                     updateDataCard('spo2Card', 'SPO2', data['SPO2']);
                     updateDataCard('bloodPressureCard', 'Blood Pressure', `${data['Systolic']}/${data['Diastolic']}`);
                     updateDataCard('temperatureCard', 'Body Temperature', data['Body Temp.']);
