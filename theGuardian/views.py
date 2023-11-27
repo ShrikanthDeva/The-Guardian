@@ -24,7 +24,7 @@ def index(request):
          user = authenticate(request, username=username, password=password)
          if user is not None:
                login(request, user)
-               return HttpResponseRedirect(reverse('home'))
+               return render(request, 'home.html')
       else:
          return render(request, 'index.html', context={'form': form, 'error': 'Invalid username or password'})
          
@@ -49,7 +49,7 @@ def signup(request):
          user = authenticate(request, username = form.cleaned_data['username'], password = form.cleaned_data['password1'])
          if user is not None:
                login(request, user)
-               return HttpResponseRedirect(reverse('home'))
+               return HttpResponseRedirect(reverse('home.html'))
          else:
             return HttpResponseRedirect(reverse('index.html'))
       else:
@@ -60,13 +60,15 @@ def signup(request):
             error = 'Your password is not strong enough or both password must be same'
    
    return render(request, 'signup.html',context={'form': form,'error': error})
-
+@login_required
 def home(request):
    return render(request, 'home.html')
 
+@login_required
 def timeline(request):
    return render(request, 'timeline.html')
 
+@login_required
 def analytics(request):
    return render(request, 'analytics.html')
 
@@ -77,11 +79,14 @@ def about(request):
 def contact(request):
    return render(request, 'contact.html')
 
+@login_required
 def patientAdmit(request):
    return render(request, 'patientAdmit.html')
 
+@login_required
 def patientReAdmit(request):
    return render(request, 'patientReAdmit.html')
 
+@login_required
 def live(request):
    return render(request, 'graphs2.html')
