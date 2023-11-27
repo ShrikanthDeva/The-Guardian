@@ -3,11 +3,19 @@ import pandas as pd
 import time
 from sklearn.ensemble import IsolationForest
 from flask_apscheduler import APScheduler
+from celery import Celery
 
 from flask_cors import CORS
 from twilio.rest import Client
 
 app = Flask(__name__)
+
+app.config['CELERY_BROKER_URL'] = 'pyamqp://guest@localhost//'
+app.config['CELERY_RESULT_BACKEND'] = 'rpc://'
+
+celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])
+celery.conf.update(app.config)
+
 CORS(app)
 
 # Load the dataset from CSV
@@ -28,9 +36,8 @@ scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
 
+@celery.task
 def sendMsg():
-
-
     account_sid = 'AC3c64a93f2c330dd53fa0bf6a16884e29'
     auth_token = 'c92d27fd8e237645afcd88922bb12b57'
     client = Client(account_sid, auth_token)
@@ -56,7 +63,7 @@ def job2():
 
     # Execute a function when an anomaly is detected
     if is_anomaly:
-        sendMsg()
+        sendMsg.apply_async()
         print("Anomaly detected!")
 
 # Function to get the next row from the dataset
