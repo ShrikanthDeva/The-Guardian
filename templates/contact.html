@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en" data-bs-theme="auto">
+  <head><script src="/docs/5.3/assets/js/color-modes.js"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.118.2">
+    <title>Dashboard </title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+    
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        width: 100%;
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+
+      .btn-bd-primary {
+        --bd-violet-bg: #712cf9;
+        --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
+
+        --bs-btn-font-weight: 600;
+        --bs-btn-color: var(--bs-white);
+        --bs-btn-bg: var(--bd-violet-bg);
+        --bs-btn-border-color: var(--bd-violet-bg);
+        --bs-btn-hover-color: var(--bs-white);
+        --bs-btn-hover-bg: #6528e0;
+        --bs-btn-hover-border-color: #6528e0;
+        --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
+        --bs-btn-active-color: var(--bs-btn-hover-color);
+        --bs-btn-active-bg: #5a23c8;
+        --bs-btn-active-border-color: #5a23c8;
+      }
+
+      .bd-mode-toggle {
+        z-index: 1500;
+      }
+
+      .bd-mode-toggle .dropdown-menu .active .bi {
+        display: block !important;
+      }
+
+      /* .navbar {
+            margin-left: 20px;
+        } */
+
+        .nav-link {
+            color: white;
+        }
+
+        .nav-link:hover {
+            color: #f8f9fa;
+        }
+
+        .buttons {
+            margin-top: 10px;
+        }
+
+        .button {
+            margin-right: 10px;
+        }
+        
+        .main-container {
+            width: 100%;
+            height: 100%;
+        }
+        .image-container {
+            height: 100%;
+        }
+        .form-container {
+            width: 100%;
+            height: 660px;
+        }
+
+        .input-items {
+            margin-top: 10px;
+        }
+
+        /* added by ajay */
+        #styling-content{
+            margin-left: 8%;
+            margin-right: 20%;
+            margin-bottom: 10%;
+            text-align: justify;
+            line-height: 40px;
+        }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+  </head>
+  <body>
+    
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+        <a class="navbar-brand" href="#"><i class="fa fa-medkit"></i> Guardian </a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+            </li>
+        </ul>
+    </nav>
+    
+<!-- <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="#">The Guardian</a>
+
+  <ul class="navbar-nav flex-row d-md-none">
+    <li class="nav-item text-nowrap">
+      <button class="nav-link px-3 text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSearch" aria-controls="navbarSearch" aria-expanded="false" aria-label="Toggle search">
+        <svg class="bi"><use xlink:href="#search"/></svg>
+      </button>
+    </li>
+    
+  </ul>
+
+  <div id="navbarSearch" class="navbar-search w-100 collapse">
+    <input class="form-control w-100 rounded-0 border-0" type="text" placeholder="Search" aria-label="Search">
+  </div>
+</header> -->
+
+<div class="container-fluid">
+  <div class="row">
+   
+      <canvas class="w-100" id="myChart" width="900" height="50"></canvas>
+    <div id="styling-content">
+      <h2>Contact Us - Guardian Healthcare</h2>
+      <p>
+        At Guardian Healthcare, we value your inquiries and are committed to providing you with the information you need. Whether you have questions about our innovative healthcare solutions, want to explore partnership opportunities, or need technical support, our team is here to assist you.
+      </p>
+      <h4>
+        General Inquiries:
+      </h4>
+      <p>
+        For general inquiries and information about Guardian Healthcare, please contact our customer support team:
+      </p>
+        <ul>
+            <li>
+                <b>Email:</b>
+                info@guardianhealthcare.com
+            </li>
+            <li>
+                <b>Phone: </b>
+                8472784759
+            </li>
+        </ul>
+        
+        <h4>
+            Technical Support:
+        </h4>
+        <p>
+            Our technical support team is dedicated to ensuring that you have a seamless experience with Guardian Healthcare. If you need assistance or have technical questions, please contact:
+            <ul>
+                <li><b>Email:</b> support@guardianhealthcare.com</li>
+                <li><b>Phone:</b> 2453656235</li>
+            </ul>            
+        </p>
+        
+        <h4>
+            Connect with Us:
+        </h4>
+        <p>
+            Stay updated on the latest news, features, and developments by following us on social media:
+        </p>
+        <ul>
+            <li><b>Twitter:</b> @Guardian_Health</li>
+            <li><b>LinkedIn:</b> Guardian Healthcare</li>
+            <li><b>Facebook:</b> GuardianHealthcare</li>
+        </ul>
+        <h4>
+            Partnership Opportunities:
+        </h4>
+        <p>
+            If you are interested in exploring partnership opportunities with Guardian Healthcare, please reach out to our partnerships team:
+            <br>
+            <b>Email:</b> <a>partnerships@guardianhealthcare.com</a>
+        </p>
+        <p>
+            Feel free to reach out, and let Guardian Healthcare be your partner in redefining healthcare through technology and compassionate care. Your well-being is our priority.
+        </p>
+    </div>
+
+      
+    
+  </div>
+</div>
+<script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.3.2/dist/chart.umd.js" integrity="sha384-eI7PSr3L1XLISH8JdDII5YN/njoSsxfbrkCTnJrzXt+ENP5MOVBxD+l6sEG4zoLp" crossorigin="anonymous"></script><script src="dashboard.js"></script></body>
+</html>

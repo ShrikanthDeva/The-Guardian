@@ -70,5 +70,18 @@ def timeline(request):
 def analytics(request):
    return render(request, 'analytics.html')
 
+# added by ajay
+def about(request):
+   return render(request, 'about.html')
+
+def contact(request):
+   return render(request, 'contact.html')
+
+def patientAdmit(request):
+   return render(request, 'patientAdmit.html')
+
+def patientReAdmit(request):
+   return render(request, 'patientReAdmit.html')
+
 def live(request):
    return render(request, 'graphs2.html')
