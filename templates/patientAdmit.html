@@ -1,5 +1,4 @@
 {% load static %}
-{% load widget_tweaks %}
 <!doctype html>
 <html lang="en" data-bs-theme="auto">
   <head><script src="{% static 'js/color-modes.js' %}"></script>
@@ -121,7 +120,6 @@
         }
         .form-container {
             width: 100%;
-            height: 660px;
         }
 
         .input-items {
@@ -139,10 +137,13 @@
         <a class="navbar-brand" href="#"><i class="fa fa-medkit"></i> Guardian </a>
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="/contact">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/home">Home</a>
             </li>
         </ul>
     </nav>
@@ -202,77 +203,149 @@
         </div>
         
         
-        <main class="form-signin w-100 m-auto">
 
-        <form method="POST" class="my-5">
-            {% if error %}
-            <div class="my-2">
-                <div class="row">
-                    <div class="m-auto col">
-                        <div class="text-center alert alert-danger" role="alert">
-                            {{error}}
+        <main class="form-signin w-40 m-auto" style="max-width: 800px">
+            <form>
+                <h1 class="h3 mb-3 fw-normal">Patient Admit Details</h1>
+        
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="patientId">Patient Id:</label>
+                            <input type="number" class="form-control" id="patientId" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="patientName">Patient name:</label>
+                            <input type="text" class="form-control" id="patientName" placeholder="">
                         </div>
                     </div>
                 </div>
-            </div>
-            {% endif %}
+        
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="diseaseName">Disease name:</label>
+                            <input type="text" class="form-control" id="diseaseName" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="PatientAge">age:</label>
+                            <input type="number" class="form-control" id="PatientAge" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            {% csrf_token %}
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="patientGender">Gender:</label>
+                            <input type="text" class="form-control" id="patientGender" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="dateOfBirth">Date of birth:</label>
+                            <input type="text" class="form-control" id="dateOfBirth" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            <h1 class="h3 mb-3 fw-normal">Doctor - Signup</h1>
-            
-            <div class="form input-items">
-                <label class="form-label">Doctor Name</label>
-                {% render_field form.username|attr:'required:true' class="form-control" %}
-                
-            </div>
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="dateOfAdmission">Date of admission:</label>
+                            <input type="text" class="form-control" id="dateOfAdmission" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="patientHeight">Height:</label>
+                            <input type="number" class="form-control" id="patientHeight" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form input-items">
-                <label class="form-label">Email address</label>
-                {% render_field form.email|attr:'required:true' class="form-control" %}
-                
-            </div>
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="patientWeight">Weight:</label>
+                            <input type="number" class="form-control" id="patientWeight" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="lastCheckUpDate">Last checkup date:</label>
+                            <input type="text" class="form-control" id="lastCheckUpDate" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form input-items">
-                <label class="form-label">Password</label>
-                {% render_field form.password1|attr:'required:true' class="form-control" %}
-                
-            
-            </div>
-            
-            
-            <div class="form input-items">
-                <label class="form-label">Confirm Password</label>
-                {% render_field form.password2|attr:'required:true' class="form-control" %}
-                
-            
-            </div>
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="heartRateUpper">Heartbeat <br> threshold(upperlimit):</label>
+                            <input type="number" class="form-control" id="heartRateUpper" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="heartRateLower">Heartbeat <br> threshold(lowerlimit):</label>
+                            <input type="number" class="form-control" id="heartRateLower" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form input-items">
-                <label class="form-label">Phone</label>
-                {% render_field form.phone|attr:'required:true' class="form-control" %}
-                
-            </div>
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="bpSystolicUpper">Blood Pressure  <br>Systolic(upperlimit):</label>
+                            <input type="number" class="form-control" id="bpSystolicUpper" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="bpSystolicLower">Blood Pressure <br> Systolic(lowerlimit):</label>
+                            <input type="number" class="form-control" id="bpSystolicLower" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form input-items">
-                <label class="form-label">Specialization</label>
-                {% render_field form.specialization|attr:'required:true' class="form-control" %}
-                
-            </div>
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="bpDiastolicUpper">Blood Pressure  <br>Diastolic(upperlimit):</label>
+                            <input type="number" class="form-control" id="bpDiastolicUpper" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="bpDiastolicLower">Blood Pressure <br> Diastolic(lowerlimit):</label>
+                            <input type="number" class="form-control" id="bpDiastolicLower" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            <div class="form-check text-start my-3">
-                <label class="form-check-label" for="registerLink">Registered user ?</label>
-                <a href="/" id="registerLink">Login</a>
-            </div>
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="spo2Upper">SpO2(upperlimit):</label>
+                            <input type="number" class="form-control" id="spo2Upper" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="spo2Lower">SpO2(lowerlimit):</label>
+                            <input type="number" class="form-control" id="spo2Lower" placeholder="">
+                        </div>
+                    </div>
+                </div>
 
-            {% comment %} <div class="btn btn-primary w-100 py-2" type="submit">
-                <a href="/home" id="registerLink">Sign up</a>
-            </div> {% endcomment %}
-            
-            <!-- <div type="submit" onclick="window.location.href = 'http://127.0.0.1:8000/home'" >Sign up</div> -->
-            <button type="submit" class="btn btn-primary w-100 py-2">Sign up</button>
+                <div class="form input-items">
+                    <div class="row">
+                        <div class="col">
+                            <label for="respiratoryUpper">Respiratory Rate <br>(upperlimit):</label>
+                            <input type="number" class="form-control" id="respiratoryUpper" placeholder="">
+                        </div>
+                        <div class="col">
+                            <label for="respiratoryLower">Respiratory Rate <br>(lowerlimit):</label>
+                            <input type="number" class="form-control" id="respiratoryLower" placeholder="">
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+        
+                <button class="btn btn-primary w-100 py-2" type="submit">
+                    <a href="/home" id="registerLink">Submit</a>
+                </button>
             </form>
         </main>
+        
     </div>
 
     

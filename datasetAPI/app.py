@@ -21,7 +21,7 @@ CORS(app)
 # Load the dataset from CSV
 dataset = pd.read_csv('dataset.csv')
 isolation_forest = IsolationForest(contamination=0.1)
-isolation_forest.fit(dataset[['Heart Beat','SPO2','Systolic','Diastolic','Respiratory','Body Temp.','Sugar Level']].values) 
+isolation_forest.fit(dataset[['Heart Beat','SPO2','Systolic','Diastolic','Respiratory','Body Temp.','Sugar Level', 'hbpm', 'rbpm']].values) 
 # Index to keep track of the current row to send
 current_row = 0
 bp = []
@@ -39,14 +39,16 @@ scheduler.start()
 @celery.task
 def sendMsg():
     account_sid = 'AC3c64a93f2c330dd53fa0bf6a16884e29'
-    auth_token = 'c92d27fd8e237645afcd88922bb12b57'
+    auth_token = '789b8f3a4a222cbe0b2fa76f32ff500e'
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
     from_='+12673547173',
-    body='Anomaly detected!',
+    body='Alert',
     to='+917005674461'
     )
+
+    print(message.sid)
 
 @scheduler.task('interval', id='do_job_1', seconds=1, misfire_grace_time=900)
 def job1():
@@ -79,7 +81,7 @@ def get_next_row():
 
 def detect_anomaly(row):
     # Use isolation forest to detect anomalies Heart Beat,SPO2,Systolic,Diastolic,Respiratory,Body Temp.,Sugar Level
-    data_point = [row['Heart Beat'], row['SPO2'], row['Systolic'], row['Diastolic'], row['Respiratory'], row['Body Temp.'], row['Sugar Level']]  # Replace with your actual features
+    data_point = [row['Heart Beat'], row['SPO2'], row['Systolic'], row['Diastolic'], row['Respiratory'], row['Body Temp.'], row['Sugar Level'], row['hbpm'], row['rbpm']]  # Replace with your actual features
     is_anomaly = isolation_forest.predict([data_point])[0] == -1
     return is_anomaly
 

@@ -207,6 +207,15 @@
         .input-items {
             margin-top: 10px;
         }
+
+        /* added by ajay */
+        #styling-content{
+            margin-left: 8%;
+            margin-right: 20%;
+            margin-bottom: 10%;
+            text-align: justify;
+            line-height: 40px;
+        }
     </style>
 
     
@@ -224,13 +233,7 @@
                 <a class="nav-link" href="/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/contact">Contact</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/patientAdmit">Patient Admit</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/patientReAdmit">Patient Re-Admit</a>
+                <a class="nav-link" href="/">Login</a>
             </li>
         </ul>
     </nav>
@@ -256,56 +259,65 @@
   <div class="row">
    
       <canvas class="w-100" id="myChart" width="900" height="50"></canvas>
+    <div id="styling-content">
+      <h2>Contact Us - Guardian Healthcare</h2>
+      <p>
+        At Guardian Healthcare, we value your inquiries and are committed to providing you with the information you need. Whether you have questions about our innovative healthcare solutions, want to explore partnership opportunities, or need technical support, our team is here to assist you.
+      </p>
+      <h4>
+        General Inquiries:
+      </h4>
+      <p>
+        For general inquiries and information about Guardian Healthcare, please contact our customer support team:
+      </p>
+        <ul>
+            <li>
+                <b>Email:</b>
+                info@guardianhealthcare.com
+            </li>
+            <li>
+                <b>Phone: </b>
+                8472784759
+            </li>
+        </ul>
+        
+        <h4>
+            Technical Support:
+        </h4>
+        <p>
+            Our technical support team is dedicated to ensuring that you have a seamless experience with Guardian Healthcare. If you need assistance or have technical questions, please contact:
+            <ul>
+                <li><b>Email:</b> support@guardianhealthcare.com</li>
+                <li><b>Phone:</b> 2453656235</li>
+            </ul>            
+        </p>
+        
+        <h4>
+            Connect with Us:
+        </h4>
+        <p>
+            Stay updated on the latest news, features, and developments by following us on social media:
+        </p>
+        <ul>
+            <li><b>Twitter:</b> @Guardian_Health</li>
+            <li><b>LinkedIn:</b> Guardian Healthcare</li>
+            <li><b>Facebook:</b> GuardianHealthcare</li>
+        </ul>
+        <h4>
+            Partnership Opportunities:
+        </h4>
+        <p>
+            If you are interested in exploring partnership opportunities with Guardian Healthcare, please reach out to our partnerships team:
+            <br>
+            <b>Email:</b> <a>partnerships@guardianhealthcare.com</a>
+        </p>
+        <p>
+            Feel free to reach out, and let Guardian Healthcare be your partner in redefining healthcare through technology and compassionate care. Your well-being is our priority.
+        </p>
+    </div>
 
-      <h2>Patients</h2>
-      <div class="table-responsive small">
-        <table class="table table-striped table-sm">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Patient Name</th>
-              <th scope="col">Age</th>
-              <th scope="col">Gender</th>
-              
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td><a href="/timeline">John Doe</a></td>
-              <td>32</td>
-              <td>Male</td>
-            </tr>
-            <tr>
-                <td>2</td>
-               <td><a href="/timeline">Alex</a></td>
-                <td>25</td>
-                <td>Male</td>
-
-              </tr>
-              <tr>
-                <td>3</td>
-                <td><a href="/timeline">George</a></td>
-                <td>25</td>
-                <td>Male</td>
-              </tr>
-              <tr>
-                <td>4</td>
-                <td><a href="/timeline">Monica</a></td>
-
-                <td>24</td>
-                <td>Female</td>
-              </tr>
-              <tr>
-                <td>5</td>
-                <td><a href="/timeline">Justin</a></td>
-                <td>28</td>
-                <td>Male</td>
-              </tr>
-                      </tbody>
-        </table>
-      </div>
-    </main>
+      
+    
   </div>
 </div>
 <script src="/docs/5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
