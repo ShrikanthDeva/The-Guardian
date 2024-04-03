@@ -12,7 +12,8 @@ urlpatterns = {
     path('about/', views.about),
     path('contact/',views.contact),
     path('patientAdmit/',views.patientAdmit),
-    path('patientReAdmit/',views.patientReAdmit),
+    path('reAdmitPatient/',views.patientReAdmit),
     path('analytics/', views.analytics),
     path('live/', views.live),
+    path('checkdisease/', views.checkdisease),
 }

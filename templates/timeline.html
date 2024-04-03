@@ -186,6 +186,12 @@
             display: inline-block;
             font-size: 16px;
         }
+        .lastcontainer{
+            display:flex;
+            justify-content: space-around;
+            padding: 50px;
+            align-items:center;
+        }
     </style>
 </head>
 <body>
@@ -213,81 +219,87 @@
         </div>
     </nav>    
     <div>        
-    <section class="my-5" id="report">
-        <div class="container">
-            <div class="main-body">
-                <div class="row">
-                    <div class="col-lg-12">
-                    <div class="card card-body">
-                        <!-- <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin"
-                                class="rounded-circle p-1 bg-warning" width="110"> -->
-                        <div class="mt-3">
-                            <h4>John Doe</h4>
-                            <p class="text-secondary mb-1">Age: 32</p>
-                            <p class="text-secondary mb-1">Gender: Male</p>
-                            <p class="text-secondary mb-1">Address: Coimbatore, Tamil Nadu</p>
-                            <p class="text-muted font-size-sm">Admitted on: 26-10-2023</p>
-                            <p class="text-secondary mb-1">HEIGHT: 170cm WEIGHT: 60Kgs</p>
-                        </div>
-                    </div>  
-                    </div>                     
-                    <div class="col-lg-12">
-                        <div class="card">
-                            <div class="card-body p-0 table-responsive">
-                                <h4 class="p-3 mb-0">General Medical History</h4>
-                                <table class="table mb-0">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">Cheif Complaints</th>
-                                        <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>                                           
-                                        <td>Head ache, Fever with chills</td>
-                                    </tr>
-                                    <tr>
-                                        <th colspan="2">
-                                            <span>Status:</span>
-                                            <span class="badge badge-success">ADMITTED</span>
-                                        </th>
-                                    </tr>
-                                </tbody>
-                                </table>
+        <section class="my-5" id="report">
+            <div class="container">
+                <div class="main-body">
+                    <div class="row">
+                        <div class="col-lg-12">
+                        <div class="card card-body">
+                            <!-- <img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="Admin"
+                                    class="rounded-circle p-1 bg-warning" width="110"> -->
+                            <div class="d-flex flex-row">
+                                <div >
+                                    <img style="border-radius: 50%" src="{% static "img/user.png" %}" >
+                                </div>
+                                <div class="mt-3" style="margin-left: 80px">
+                                    <h4>John Doe</h4>
+                                    <p class="text-secondary mb-1">Age: 32</p>
+                                    <p class="text-secondary mb-1">Gender: Male</p>
+                                    <p class="text-secondary mb-1">Address: Coimbatore, Tamil Nadu</p>
+                                    <p class="text-muted font-size-sm">Admitted on: 26-10-2023</p>
+                                    <p class="text-secondary mb-1">HEIGHT: 170cm WEIGHT: 60Kgs</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h4>Timeline</h4>
-                                <ul id="timeline" class="timeline">
-                                    <li class="d-flex flex-column">
-                                        <input type="text" placeholder="Enter Time" value="09:00 AM">
-                                        <input class="text-muted" type="text" placeholder="Enter description" value="Breakfast provided - Light Food">
-                                    </li>
-                                    <li class="d-flex flex-column">
-                                        <input type="text" placeholder="Enter Time" value="09:30 AM">
-                                        <input class="text-muted" type="text" placeholder="Enter description" value="Vitals checked. Normal">
-                                    </li>
-                                    <li class="d-flex flex-column">
-                                        <input type="text" placeholder="Enter Time" value="09:30 AM">
-                                        <input class="text-muted" type="text" placeholder="Enter description" value="Vitals checked. Normal">
-                                    </li>
-                                    <li id="event" class="d-flex flex-column">
-                                        <input id="time" type="text" placeholder="Enter Time">
-                                        <input id="desc" class="text-muted" type="text" placeholder="Enter description">
-                                        <button id="add" onclick="addEvent()">Add</button>
-                                    </li>            
-                                </ul>
+                        </div>  
+                        </div>                     
+                        <div class="col-lg-12">
+                            <div class="card">
+                                <div class="card-body p-0 table-responsive">
+                                    <h4 class="p-3 mb-0">General Medical History</h4>
+                                    <table class="table mb-0">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">Cheif Complaints</th>
+                                            <th scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>                                           
+                                            <td>Head ache, Fever with chills</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan="2">
+                                                <span>Status:</span>
+                                                <span class="badge badge-success">ADMITTED</span>
+                                            </th>
+                                        </tr>
+                                    </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <h4>Timeline</h4>
+                                    <ul id="timeline" class="timeline">
+                                        <li class="d-flex flex-column">
+                                            <input type="text" placeholder="Enter Time" value="09:00 AM">
+                                            <input class="text-muted" type="text" placeholder="Enter description" value="Vital signs stable. Pain level 3/10 on numeric pain scale. Patient reports good sleep.">
+                                        </li>
+                                        <li class="d-flex flex-column">
+                                            <input type="text" placeholder="Enter Time" value="09:30 AM">
+                                            <input class="text-muted" type="text" placeholder="Enter description" value="Patient attended physical therapy session and tolerated well. Reports some fatigue afterwards">
+                                        </li>
+                                        <li class="d-flex flex-column">
+                                            <input type="text" placeholder="Enter Time" value="09:30 AM">
+                                            <input class="text-muted" type="text" placeholder="Enter description" value=" Vital signs stable. Assisted with toileting and ambulation.">
+                                        </li>
+                                        <li id="event" class="d-flex flex-column">
+                                            <input id="time" type="text" placeholder="Enter Time">
+                                            <input id="desc" class="text-muted" type="text" placeholder="Enter description">
+                                            <button id="add" onclick="addEvent()">Add</button>
+                                        </li>            
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <div class="gr">
-    <button id="genreport" class="genreport" onclick="print()">Generate Report </button>
-    </div>   
+        </section>           
+    </div>
+    <div class='lastcontainer'>
+        <button id="predictDisease" class="predictDisease gr" onclick="location.href = '/checkdisease'">Predict Disease</button>
+        <button id="genreport" class="genreport gr" onclick="print()">Generate Report </button>
     </div>
     <script>
         window.jsPDF = window.jspdf.jsPDF;

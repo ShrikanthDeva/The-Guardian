@@ -36,7 +36,6 @@ scheduler = APScheduler()
 scheduler.init_app(app)
 scheduler.start()
 
-@celery.task
 def sendMsg():
     account_sid = 'AC3c64a93f2c330dd53fa0bf6a16884e29'
     auth_token = '789b8f3a4a222cbe0b2fa76f32ff500e'
@@ -65,7 +64,7 @@ def job2():
 
     # Execute a function when an anomaly is detected
     if is_anomaly:
-        sendMsg.apply_async()
+        sendMsg()
         print("Anomaly detected!")
 
 # Function to get the next row from the dataset
