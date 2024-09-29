@@ -195,6 +195,7 @@
     </style>
 </head>
 <body>
+    {% csrf_token %}
     <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
         <a class="navbar-brand" href="#"><i class="fa fa-medkit"></i> Guardian </a>
         <div class="navbar-nav">
@@ -283,11 +284,16 @@
                                             <input type="text" placeholder="Enter Time" value="09:30 AM">
                                             <input class="text-muted" type="text" placeholder="Enter description" value=" Vital signs stable. Assisted with toileting and ambulation.">
                                         </li>
+                                        <li class="d-flex flex-column">
+                                            <input type="text" placeholder="Enter Time" value={{time}}>
+                                            <input class="text-muted" type="text" placeholder="Enter description" value={{text}}>
+                                        </li>
                                         <li id="event" class="d-flex flex-column">
                                             <input id="time" type="text" placeholder="Enter Time">
                                             <input id="desc" class="text-muted" type="text" placeholder="Enter description">
                                             <button id="add" onclick="addEvent()">Add</button>
-                                        </li>            
+                                        </li> 
+                                                   
                                     </ul>
                                 </div>
                             </div>
@@ -299,7 +305,9 @@
     </div>
     <div class='lastcontainer'>
         <button id="predictDisease" class="predictDisease gr" onclick="location.href = '/checkdisease'">Predict Disease</button>
+        <button id="voiceInput" class="voiceInput gr" onclick="location.href = '/voiceInput'">Voice Input</button>
         <button id="genreport" class="genreport gr" onclick="print()">Generate Report </button>
+
     </div>
     <script>
         window.jsPDF = window.jspdf.jsPDF;

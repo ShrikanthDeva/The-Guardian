@@ -37,14 +37,14 @@ scheduler.init_app(app)
 scheduler.start()
 
 def sendMsg():
-    account_sid = 'AC3c64a93f2c330dd53fa0bf6a16884e29'
-    auth_token = '789b8f3a4a222cbe0b2fa76f32ff500e'
+    account_sid = ''
+    auth_token = ''
     client = Client(account_sid, auth_token)
 
     message = client.messages.create(
-    from_='+12673547173',
-    body='Alert',
-    to='+917005674461'
+    from_='+',
+    body='Alert Patient is not responding well',
+    to='+'
     )
 
     print(message.sid)

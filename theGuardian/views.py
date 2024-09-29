@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import DoctorForm, DoctorLoginForm, PatientForm
 from .models import Doctor, Patient
@@ -10,7 +10,6 @@ from django.http import JsonResponse
 
 from .models import Timeline
 
-# Create your views here.
 
 # Doctor-Login
 def index(request):
@@ -61,10 +60,15 @@ def signup(request):
 def home(request):
    return render(request, 'home.html')
 
+import time
 @login_required
 def timeline(request):
-   
-   return render(request, 'timeline.html')
+   if request.method == "GET":
+      return render(request, 'timeline.html',{'text':'','time':''})
+   text = request.POST.get('transcript')  
+   context = {'text': text,'time':time.time()}
+   print(context)
+   return render(request, 'timeline.html', context)
 
 @login_required
 def analytics(request):
@@ -295,3 +299,49 @@ def checkdisease(request):
       #   print("disease record saved sucessfully.............................")
 
         return JsonResponse({'predicteddisease': predicted_disease ,'confidencescore':confidencescore , "consultdoctor": consultdoctor})
+
+import assemblyai as aai
+
+aai.settings.api_key = "d6f5f88ea49548ab88a9465c686b61bb"
+transcriber = aai.Transcriber()
+
+
+@login_required
+def voiceInput(request):
+   if request.method == 'POST':
+      pass
+   # transcript = transcriber.transcribe("https://storage.googleapis.com/aai-web-samples/news.mp4")
+# transcript = transcriber.transcribe("./my-local-audio-file.wav")
+
+   # print(transcript.text)
+   return render(request,'voiceInput.html')
+
+
+from django.http import JsonResponse
+from rest_framework.decorators import api_view
+import requests
+from django.template import RequestContext
+from django.views.decorators.csrf import csrf_protect
+
+
+
+
+@login_required
+@csrf_protect
+def transcribe_audio(request):
+
+   aai.settings.api_key = "d6f5f88ea49548ab88a9465c686b61bb"
+   transcriber = aai.Transcriber()
+   transcript = transcriber.transcribe("C:/Users/Shrikanth/Music/recording.webm")
+   print(f'Transcription result: {transcript.text}')
+   count = 0
+   while count < 100:
+      count += 1
+   return JsonResponse({'transcript': transcript.text})
+
+@login_required
+def timeline_data(request):
+
+   t = time.localtime()
+   context = {'text': "Patient Responed Well",'time': time.strftime("%H:%M PM",t)}
+   return render(request,'timeline.html', context)

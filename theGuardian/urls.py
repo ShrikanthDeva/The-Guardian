@@ -1,11 +1,12 @@
 from django.urls import path
 from . import views
 
-urlpatterns = {
+urlpatterns = [
     path('', views.index),
     path('register/', views.signup),
     path('home/', views.home, name='home'),
-    path('timeline/', views.timeline),
+    path('timeline/', views.timeline, name='timeline'),
+    path('timeline_data/', views.timeline_data, name='timeline_data'),
     
     
     #added by ajay kumar
@@ -16,4 +17,6 @@ urlpatterns = {
     path('analytics/', views.analytics),
     path('live/', views.live),
     path('checkdisease/', views.checkdisease),
-}
+    path('voiceInput/', views.voiceInput),
+    path('transcribe/', views.transcribe_audio),
+]
